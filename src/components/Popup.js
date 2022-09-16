@@ -4,7 +4,7 @@ import './popup.css'
 function Popup(props) {
     function iconIdentiy(e)
     {
-        
+        //add icon in state and set it's boolean value    
         props.addicon({...props.icon,[`${e.target.value}`]:!props.icon[`${e.target.value}`]})
        
     }
@@ -30,7 +30,7 @@ function Popup(props) {
                         </div>
                     </div>
                     <div onClick={()=>props.setTrigger(false)}><i class="fa-solid fa-xmark"></i></div>
-                    {props.children}
+                    {/* {props.children} */}
                 </div>
             </div>
         </>

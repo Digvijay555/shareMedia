@@ -46,9 +46,13 @@ import {
 } from "react-share";
 
 function Check2() {
-    // const shareUrl = window.location.href;
-    // console.log(shareUrl)
-    const shareUrl="https://www.google.com/search?q=ncert+book"
+    
+    // get current page url
+    const shareUrl = window.location.href;
+
+    // const shareUrl="https://www.google.com/search?q=ncert+book"
+
+    //state for show/hide icon
     const[display,setdisplay]=useState(false);
     const [icon, seticon] = useState({
         "whatsapp": true,
@@ -72,6 +76,8 @@ function Check2() {
         "workplace": false
 
     })
+
+    //Array of object of all social icon
     const obj = [{
         "name": "facebook",
         "socialName": <FacebookShareButton url={shareUrl}>
@@ -194,7 +200,7 @@ function Check2() {
     },
     {
         "name": "whatsapp",
-        "socialName": <WhatsappShareButton url={shareUrl}>
+        "socialName": <WhatsappShareButton url={shareUrl} onClick={()=>{console.log("kam chal raha hai")}}>
             {shareCount => <span className="myShareCountWrapper">{shareCount}</span>}
             <WhatsappIcon size={32} round={true} />
         </WhatsappShareButton>
@@ -209,19 +215,24 @@ function Check2() {
 
     ]
 
+    // state to handle addicon popup
     const [popupbutton, setpopupbutton] = useState(false)
+
     return (
         <div>
+            {/*default whatsapp icon start div*/}
             <div style={{ position:"fixed",bottom:"29%",right:"45%",width: "fit-content", backgroundColor: "#e2e1ec", borderRadius: "30px", padding: "5px" }} >
                 
-            <WhatsappShareButton url={shareUrl}>
+            <WhatsappShareButton url={shareUrl} onClick={()=>{console.log("kam chal raha hai")}}>
             {shareCount => <span className="myShareCountWrapper">{shareCount}</span>}
             <WhatsappIcon size={32} round={true} />
             </WhatsappShareButton>
             
             <div style={{fontSize:"28px"}} onClick={()=>{setdisplay(!display)}}><i class="fa-solid fa-share-nodes"></i></div>
 
-            </div>
+            </div> 
+            {/*default whatsapp icon end div*/}
+
            { 
                 display===true?
            (<div style={{ display:"flex", flexDirection:"column",position:"fixed",bottom:"29%",right:"45%",width: "fit-content", backgroundColor: "#e2e1ec", borderRadius: "30px", padding: "5px" }}>
@@ -230,14 +241,14 @@ function Check2() {
                         obj.map((key) => {
                             if (icon[`${key.name}`] === true)
                                 return (
-                                    // <div style={{ border: "none", width: "fit-content", display: "inline-flex", borderRadius: "20px" }}>
+                                    
                                         <div style={{marginBottom:"27%"}}>
                                             <div style={{ border: "none", backgroundColor: "transparent" }}>
                                                 {key.socialName}
                                             </div>
 
                                         </div>
-                                    // </div>
+                                    
                                 )
                         }) :
                         null
